@@ -1,10 +1,20 @@
 package guru.springframework.sfgdi;
 
-import guru.springframework.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+import guru.springframework.sfgdi.controllers.ConstructorInjectedController;
+import guru.springframework.sfgdi.controllers.I18nController;
+import guru.springframework.sfgdi.controllers.MyController;
+import guru.springframework.sfgdi.controllers.PetController;
+import guru.springframework.sfgdi.controllers.PropertyInjectedController;
+import guru.springframework.sfgdi.controllers.SetterInjectedController;
+
+// override Spring Boot default by specifying which packages to scan for components, not just where the
+// maing class lives
+@ComponentScan(basePackages = {"guru.springframework.sfgdi","com.springframework.pets"})
 @SpringBootApplication
 public class SfgDiApplication {
 
