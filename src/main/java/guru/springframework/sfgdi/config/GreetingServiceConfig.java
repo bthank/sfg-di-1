@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import guru.springframework.sfgdi.services.ConstructorGreetingService;
+import guru.springframework.sfgdi.services.I18NSpanishService;
 import guru.springframework.sfgdi.services.I18nEnglishGreetingService;
 import guru.springframework.sfgdi.services.PrimaryGreetingService;
 import guru.springframework.sfgdi.services.PropertyInjectedGreetingService;
@@ -14,8 +15,14 @@ import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
 @Configuration
 public class GreetingServiceConfig {
 
+	@Profile({"ES", "default"})
+	@Bean("i18nService")  // here we are overriding the bean name that Spring would have used which would have been method name
+	I18NSpanishService i18NSpanishService() {
+		return new I18NSpanishService();
+	}
+	
 	@Profile("EN")
-	@Bean
+	@Bean  
 	I18nEnglishGreetingService i18nService() {
 		return new I18nEnglishGreetingService();
 	}
